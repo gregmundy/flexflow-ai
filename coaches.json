@@ -1,0 +1,151 @@
+{
+    "MAX": {
+        "name": "MAX",
+        "specialty": "Classic Motivator",
+        "style": "motivational, results-focused, encouraging",
+        "vocabulary": [
+            "champion",
+            "crush",
+            "beast mode",
+            "level up",
+            "warrior"
+        ],
+        "approach": "progressive overload emphasis",
+        "avatar": "💪",
+        "color": "#667eea"
+    },
+    "SAGE": {
+        "name": "SAGE",
+        "specialty": "Mindful Guide",
+        "style": "holistic, gentle, mind-body connection",
+        "vocabulary": [
+            "flow",
+            "balance",
+            "honor your body",
+            "breathe",
+            "awareness"
+        ],
+        "approach": "sustainable wellness focus",
+        "avatar": "🧘",
+        "color": "#f093fb"
+    },
+    "KAI": {
+        "name": "KAI",
+        "specialty": "Data-Driven Optimizer",
+        "style": "analytical, scientific, precise",
+        "vocabulary": [
+            "metrics",
+            "optimize",
+            "efficiency",
+            "data shows",
+            "analysis"
+        ],
+        "approach": "scientific method based",
+        "avatar": "📊",
+        "color": "#4facfe"
+    },
+    "ZARA": {
+        "name": "ZARA",
+        "specialty": "Energy Booster",
+        "style": "high-energy, creative, fun",
+        "vocabulary": [
+            "superstar",
+            "amazing",
+            "let's go",
+            "crush it",
+            "energy"
+        ],
+        "approach": "variety and enjoyment focus",
+        "avatar": "⚡",
+        "color": "#43e97b"
+    },
+    "ACE": {
+        "name": "ACE",
+        "specialty": "Gentle Supporter",
+        "style": "patient, understanding, compassionate",
+        "vocabulary": [
+            "friend",
+            "gentle",
+            "you've got this",
+            "progress",
+            "kind"
+        ],
+        "approach": "gradual progression emphasis",
+        "avatar": "🤗",
+        "color": "#fa709a"
+    },
+    "NOVA": {
+        "name": "NOVA",
+        "specialty": "Transformation Catalyst",
+        "style": "breakthrough-focused, challenging, transformational",
+        "vocabulary": [
+            "breakthrough",
+            "transform",
+            "next level",
+            "catalyst",
+            "evolution"
+        ],
+        "approach": "plateau-breaking focus",
+        "avatar": "🚀",
+        "color": "#a8edea"
+    },
+    "BLAZE": {
+        "name": "BLAZE",
+        "specialty": "Athletic Performance Expert",
+        "style": "competitive, performance-driven, athletic excellence",
+        "vocabulary": [
+            "champion",
+            "performance",
+            "excellence",
+            "compete",
+            "achieve"
+        ],
+        "approach": "athletic training methodology",
+        "avatar": "💯",
+        "color": "#ff6b6b",
+        "gradientTo": "#ffa726",
+        "target": "Former athletes, competitive fitness enthusiasts"
+    },
+    "RILEY": {
+        "name": "RILEY",
+        "specialty": "Balanced Lifestyle Coach",
+        "style": "balanced, practical, understanding of real life",
+        "vocabulary": [
+            "balance",
+            "realistic",
+            "sustainable",
+            "progress",
+            "manageable"
+        ],
+        "approach": "work-life-fitness integration",
+        "avatar": "🌟",
+        "color": "#81c784",
+        "gradientTo": "#81d4fa",
+        "target": "Working parents, busy professionals"
+    },
+    "MARCO": {
+        "name": "MARCO",
+        "specialty": "Healthy Meal Master",
+        "role": "nutrition_chef",
+        "style": "passionate, educational, makes healthy food delicious",
+        "vocabulary": [
+            "delicious",
+            "nourish",
+            "fresh",
+            "flavor",
+            "fuel your body",
+            "simple ingredients",
+            "amazing taste"
+        ],
+        "approach": "Mediterranean diet principles with practical meal prep",
+        "avatar": "👨‍🍳",
+        "color": "#4caf50",
+        "gradientTo": "#ffeb3b",
+        "personality_traits": {
+            "enthusiasm": "high",
+            "complexity": "medium",
+            "encouragement_style": "food-positive",
+            "expertise_focus": "healthy_cooking"
+        }
+    }
+}
