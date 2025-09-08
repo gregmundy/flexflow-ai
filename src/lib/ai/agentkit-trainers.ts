@@ -5,7 +5,7 @@ import {
   createTool,
   anthropic,
 } from '@inngest/agent-kit';
-const coachesData = require('@/data/coaches.json');
+import coachesData from '@/data/coaches.json';
 // Import Exercise type from the database schema
 interface Exercise {
   id: number;
@@ -43,7 +43,19 @@ export interface WorkoutGenerationParams {
 
 export interface WorkoutGenerationState {
   params?: WorkoutGenerationParams;
-  userProfile?: any;
+  userProfile?: {
+    profile: {
+      fitnessLevel: string;
+      availableEquipment: string[];
+      primaryGoals: string[];
+      injuriesLimitations: string | null;
+    };
+    preferences: {
+      workoutIntensityPreference?: string;
+      exerciseVarietyPreference?: string;
+      restTimePreferences?: string;
+    };
+  };
   generatedWorkout?: Exercise[];
   validationPassed?: boolean;
   fallbackUsed?: boolean;
@@ -69,9 +81,6 @@ const WorkoutSchema = z.array(ExerciseSchema);
 const validateWorkoutTool = createTool({
   name: 'validate_and_save_workout',
   description: 'Validate the generated workout JSON and save it to the network state',
-  parameters: z.object({
-    workout: z.array(ExerciseSchema),
-  }),
   handler: async (input, { network }) => {
     try {
       // Validate with Zod
@@ -103,7 +112,6 @@ const validateWorkoutTool = createTool({
 const getUserProfileTool = createTool({
   name: 'get_user_profile',
   description: 'Get user profile and preferences from the network state',
-  parameters: z.object({}),
   handler: async (input, { network }) => {
     const userProfile = network?.state.data.userProfile;
     const params = network?.state.data.params;
@@ -127,8 +135,21 @@ const getUserProfileTool = createTool({
 /**
  * Create a trainer agent for a specific coach personality
  */
+interface CoachData {
+  name: string;
+  description: string;
+  personality: string;
+  specialties: string[];
+  motivationalStyle: string;
+  workoutApproach: string;
+  restPeriodStyle: string;
+  feedbackStyle: string;
+  vocabulary: string[];
+  catchPhrases: string[];
+}
+
 function createTrainerAgent(coachId: string) {
-  const coach = (coachesData as any)[coachId];
+  const coach = (coachesData as Record<string, CoachData>)[coachId];
   
   if (!coach) {
     throw new Error(`Coach ${coachId} not found in coaches data`);
@@ -246,7 +267,7 @@ export function generateFallbackWorkout(
   fitnessLevel: string,
   coachId: string
 ): Exercise[] {
-  const coach = (coachesData as any)[coachId] || coachesData.MAX;
+  const coach = (coachesData as Record<string, CoachData>)[coachId] || (coachesData as Record<string, CoachData>).MAX;
   
   // Simple fallback based on workout type
   const baseExercises: Omit<Exercise, 'id' | 'instructions'>[] = workoutType === 'strength' ? [

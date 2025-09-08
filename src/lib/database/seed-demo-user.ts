@@ -1,5 +1,6 @@
 import { db } from '@/db';
 import { userProfiles, userPreferences, type NewUserProfile, type NewUserPreferences } from '@/db/schema';
+import { eq } from 'drizzle-orm';
 
 export const DEMO_USER_ID = '550e8400-e29b-41d4-a716-446655440000';
 
@@ -8,7 +9,7 @@ export async function createDemoUser() {
     // Check if demo user already exists
     const existingUser = await db.select()
       .from(userProfiles)
-      .where((t) => t.id === DEMO_USER_ID)
+      .where(eq(userProfiles.id, DEMO_USER_ID))
       .limit(1);
 
     if (existingUser.length > 0) {
@@ -33,9 +34,9 @@ export async function createDemoUser() {
       injuriesLimitations: 'None',
       motivationalStyle: 'High energy with positive reinforcement',
       preferredWorkoutTypes: ['STRENGTH', 'BODYWEIGHT'],
-      currentWeight: 180.0,
-      targetWeight: 190.0,
-      heightCm: 178.0,
+      currentWeight: '180.0',
+      targetWeight: '190.0',
+      heightCm: '178.0',
     };
 
     const createdProfile = await db.insert(userProfiles).values(demoProfile).returning();

@@ -143,8 +143,15 @@ export const scheduleWorkouts = inngest.createFunction(
         )
       );
       
-      // Insert new schedule
-      const inserted = await db.insert(workouts).values(schedule).returning();
+      // Insert new schedule - ensure dates are Date objects and omit auto-generated fields
+      const schedulesToInsert = schedule.map(item => ({
+        userProfileId: item.userProfileId,
+        workoutPlanId: item.workoutPlanId,
+        scheduledDate: new Date(item.scheduledDate),
+        status: item.status,
+        totalExercises: item.totalExercises,
+      }));
+      const inserted = await db.insert(workouts).values(schedulesToInsert).returning();
       return inserted;
     });
 

@@ -12,17 +12,11 @@ import { Badge } from "@/components/ui/badge";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { 
   ArrowRight, 
-  Zap, 
-  Clock, 
   Target, 
   Sparkles,
   CheckCircle2,
   Loader2,
-  ChevronRight,
-  Star,
-  Flame,
-  Heart,
-  Brain
+  Heart
 } from "lucide-react";
 
 // Coach data (simplified for POC)

@@ -20,7 +20,16 @@ export default function AgentKitDemo() {
   const [duration, setDuration] = useState(30);
   const [fitnessLevel, setFitnessLevel] = useState('intermediate');
   const [isGenerating, setIsGenerating] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<{
+    success: boolean;
+    eventId?: string;
+    trainerAgent?: string;
+    workoutType?: string;
+    estimatedDuration?: string;
+    message?: string;
+    error?: string;
+    [key: string]: unknown;
+  } | null>(null);
 
   const handleGenerate = async () => {
     setIsGenerating(true);

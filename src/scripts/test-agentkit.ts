@@ -36,8 +36,13 @@ async function testTrainerAgent(coachId: string) {
           fitnessLevel: 'intermediate',
           availableEquipment: ['dumbbells', 'resistance_bands'],
           primaryGoals: ['build_strength', 'muscle_tone'],
+          injuriesLimitations: null,
         },
-        preferences: null,
+        preferences: {
+          workoutIntensityPreference: 'moderate',
+          exerciseVarietyPreference: 'balanced',
+          restTimePreferences: 'standard',
+        },
       },
     };
     

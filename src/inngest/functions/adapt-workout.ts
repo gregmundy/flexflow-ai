@@ -241,7 +241,7 @@ export const adaptWorkout = inngest.createFunction(
           data: {
             userId,
             coachId: recommendations.nextWorkoutAdjustments.recommendedCoach,
-            workoutType: determineNextWorkoutType(analysis.focusAreas, userData.profile),
+            workoutType: determineNextWorkoutType(recommendations.nextWorkoutAdjustments.focusAreas, userData.profile),
             duration: recommendations.nextWorkoutAdjustments.suggestedDuration,
             equipment: userData.profile.availableEquipment as string[],
             fitnessLevel: userData.profile.fitnessLevel,

@@ -23,17 +23,6 @@ export const agentKitServer = createServer({
   
   // Register the AgentKit workout generation function
   functions: [generateWorkoutAgentKit],
-  
-  // Server configuration
-  port: process.env.AGENTKIT_PORT ? parseInt(process.env.AGENTKIT_PORT) : 3010,
-  
-  // Enable CORS for frontend integration
-  cors: {
-    origin: process.env.NODE_ENV === 'production' 
-      ? ['https://your-production-domain.com'] 
-      : ['http://localhost:3000'],
-    credentials: true,
-  },
 });
 
 /**

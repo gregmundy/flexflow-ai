@@ -198,7 +198,7 @@ Do not include any other text, explanations, or formatting - just the JSON array
       return NextResponse.json({
         success: false,
         error: 'Invalid request data',
-        details: error.errors,
+        details: error.issues,
       }, { status: 400 });
     }
     

@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
           variety: validatedData.preferences.variety || 'balanced',
           restTime: validatedData.preferences.restTime || 'standard',
         },
-        limitations: null,
+        limitations: undefined,
       };
 
       console.log(`🤖 Starting AgentKit workout generation for ${validatedData.coachId}...`);
@@ -171,7 +171,7 @@ Create a workout that showcases your unique coaching personality and expertise. 
       return NextResponse.json({
         success: false,
         error: 'Invalid request data',
-        details: error.errors,
+        details: error.issues,
       }, { status: 400 });
     }
     

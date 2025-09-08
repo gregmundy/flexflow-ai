@@ -253,7 +253,7 @@ export default function Home() {
               Why SMS Instead of Another App?
             </h2>
             <p className="text-lg text-gray-800 max-w-2xl mx-auto leading-relaxed">
-              Because you don't need another app cluttering your phone. Simple text messages work better.
+              Because you don&apos;t need another app cluttering your phone. Simple text messages work better.
             </p>
           </motion.div>
 
@@ -375,7 +375,7 @@ export default function Home() {
                     {/* Sample Message with Enhanced Styling */}
                     <div className="rounded-xl p-5 shadow-sm bg-gradient-to-br from-gray-50 to-gray-100 border-l-4 border-l-gray-300">
                       <p className="text-sm leading-relaxed font-medium italic text-gray-700">
-                        "{trainer.style}"
+                        &quot;{trainer.style}&quot;
                       </p>
                     </div>
                   </CardContent>
@@ -485,7 +485,7 @@ export default function Home() {
 
             <div className="bg-white rounded-xl p-8 shadow-lg max-w-2xl mx-auto">
               <p className="text-lg text-gray-700 mb-4 leading-relaxed">
-                "I've tried every fitness app out there. FlexFlow is different—it feels like having a real trainer who gets my crazy schedule. No app to open, just wake up to my workout."
+                &quot;I&apos;ve tried every fitness app out there. FlexFlow is different—it feels like having a real trainer who gets my crazy schedule. No app to open, just wake up to my workout.&quot;
               </p>
               <p className="text-sm text-gray-700">
                 — Sarah M., Early Beta User
@@ -529,7 +529,7 @@ export default function Home() {
                   How does FlexFlow work exactly?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed">
-                  After a quick setup where you share your fitness goals and preferences, FlexFlow's AI trainer sends you a personalized workout via SMS every morning. The workouts adapt based on your feedback and progress, creating a truly personalized fitness experience without any app required.
+                  After a quick setup where you share your fitness goals and preferences, FlexFlow&apos;s AI trainer sends you a personalized workout via SMS every morning. The workouts adapt based on your feedback and progress, creating a truly personalized fitness experience without any app required.
                 </AccordionContent>
               </AccordionItem>
 
@@ -556,7 +556,7 @@ export default function Home() {
                   Do I need any equipment for the workouts?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed">
-                  FlexFlow designs workouts based on what you have available. During setup, you'll indicate your equipment and space preferences. Whether you have a full gym, basic equipment, or just bodyweight options, your trainer provides workouts thoughtfully designed for your available equipment and space.
+                  FlexFlow designs workouts based on what you have available. During setup, you&apos;ll indicate your equipment and space preferences. Whether you have a full gym, basic equipment, or just bodyweight options, your trainer provides workouts thoughtfully designed for your available equipment and space.
                 </AccordionContent>
               </AccordionItem>
 
@@ -565,7 +565,7 @@ export default function Home() {
                   How much does FlexFlow cost?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed">
-                  FlexFlow costs $25/month billed monthly • Cancel anytime • No long-term commitment required. We believe fitness coaching should be accessible and affordable, which is why we've created a solution that's a fraction of the cost of traditional personal training.
+                  FlexFlow costs $25/month billed monthly • Cancel anytime • No long-term commitment required. We believe fitness coaching should be accessible and affordable, which is why we&apos;ve created a solution that&apos;s a fraction of the cost of traditional personal training.
                 </AccordionContent>
               </AccordionItem>
 
@@ -574,7 +574,7 @@ export default function Home() {
                   Is FlexFlow suitable for beginners?
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 leading-relaxed">
-                  Absolutely! FlexFlow is designed for all fitness levels. During setup, you'll indicate your experience level, and your AI trainer will create appropriate workouts that gradually progress as you get stronger. Whether you're just starting out or getting back into fitness, FlexFlow adapts to meet you where you are. Our ACE (Gentle Supporter) trainer is particularly perfect for beginners, offering patient, understanding guidance that celebrates every step of your journey.
+                  Absolutely! FlexFlow is designed for all fitness levels. During setup, you&apos;ll indicate your experience level, and your AI trainer will create appropriate workouts that gradually progress as you get stronger. Whether you&apos;re just starting out or getting back into fitness, FlexFlow adapts to meet you where you are. Our ACE (Gentle Supporter) trainer is particularly perfect for beginners, offering patient, understanding guidance that celebrates every step of your journey.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

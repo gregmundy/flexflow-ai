@@ -785,7 +785,7 @@ export default function WorkoutPage() {
   // Initialize exercise progress for all exercises
   const initializeExerciseProgress = () => {
     const progress: { [exerciseId: number]: ExerciseProgress } = {};
-    sampleWorkout.exercises.forEach(exercise => {
+    sampleWorkout.exercises.forEach((exercise: any) => {
       progress[exercise.id] = {
         exerciseId: exercise.id,
         completedSets: [],
@@ -903,7 +903,7 @@ export default function WorkoutPage() {
   }, [currentExercise, currentProgress, exerciseForm, workoutData.exerciseProgress]);
 
   const submitWorkout = (data: FeedbackForm) => {
-    setWorkoutData(prev => ({ ...prev, feedback: data }));
+    setWorkoutData(prev => ({ ...prev, feedback: { ...data, comments: data.comments || "" } }));
     // Here you would typically send the data to your backend
     console.log('Workout completed:', { ...workoutData, feedback: data });
     
@@ -973,7 +973,7 @@ export default function WorkoutPage() {
   };
 
   const calculateProgress = () => {
-    const totalPlannedSets = sampleWorkout.exercises.reduce((total, ex) => total + ex.sets, 0);
+    const totalPlannedSets = sampleWorkout.exercises.reduce((total: number, ex: any) => total + ex.sets, 0);
     const totalCompletedSets = Object.values(workoutData.exerciseProgress).reduce((total, progress) => {
       // Count only completed sets up to planned sets for progress calculation
       return total + Math.min(progress.completedSets.length, progress.plannedSets);
@@ -1055,7 +1055,7 @@ export default function WorkoutPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
-                    Today's Workout
+                    Today&apos;s Workout
                     <Badge variant="secondary">{sampleWorkout.date}</Badge>
                   </CardTitle>
                   <CardDescription className="flex items-center gap-4">
@@ -1070,7 +1070,7 @@ export default function WorkoutPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  {sampleWorkout.exercises.map((exercise, index) => (
+                  {sampleWorkout.exercises.map((exercise: any, index: number) => (
                     <div
                       key={exercise.id}
                       className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
@@ -1447,7 +1447,7 @@ export default function WorkoutPage() {
                     </div>
                     <div className="p-3 bg-gray-50 rounded-lg">
                       <p className="text-2xl font-bold text-gray-900">
-                        {sampleWorkout.exercises.reduce((total, ex) => total + ex.sets, 0)}
+                        {sampleWorkout.exercises.reduce((total: number, ex: any) => total + ex.sets, 0)}
                       </p>
                       <p className="text-sm text-gray-600">Total Sets</p>
                     </div>

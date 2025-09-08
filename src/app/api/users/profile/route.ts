@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     // Separate preferences from main profile data
     const { preferences, ...profileData } = validatedData;
     
-    // Create user profile
+    // Create user profile - convert numbers to strings for decimal fields
     const profileInsertData: NewUserProfile = {
       ...profileData,
       primaryGoals: profileData.primaryGoals,
@@ -57,6 +57,9 @@ export async function POST(request: NextRequest) {
       availableTimeSlots: profileData.availableTimeSlots,
       alternativeCoaches: profileData.alternativeCoaches,
       preferredWorkoutTypes: profileData.preferredWorkoutTypes,
+      currentWeight: profileData.currentWeight?.toString(),
+      targetWeight: profileData.targetWeight?.toString(),
+      heightCm: profileData.heightCm?.toString(),
     };
     
     const [newProfile] = await db.insert(userProfiles).values(profileInsertData).returning();
@@ -92,7 +95,7 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           error: 'Invalid profile data',
-          details: error.errors,
+          details: error.issues,
         },
         { status: 400 }
       );
@@ -194,6 +197,9 @@ export async function PUT(request: NextRequest) {
       const profileUpdateData = {
         ...validatedData,
         updatedAt: new Date(),
+        currentWeight: validatedData.currentWeight?.toString(),
+        targetWeight: validatedData.targetWeight?.toString(),
+        heightCm: validatedData.heightCm?.toString(),
       };
       
       const [updated] = await db
@@ -256,7 +262,7 @@ export async function PUT(request: NextRequest) {
         {
           success: false,
           error: 'Invalid update data',
-          details: error.errors,
+          details: error.issues,
         },
         { status: 400 }
       );

@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           error: 'Invalid feedback data',
-          details: error.errors,
+          details: error.issues,
         },
         { status: 400 }
       );
