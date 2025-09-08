@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,7 +15,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { MessageCircle, Smartphone, Users, Zap, Clock, Target, CheckCircle2, Star } from "lucide-react";
+import { MessageCircle, Smartphone, Users, Zap, Clock, Target, CheckCircle2, Star, Sparkles } from "lucide-react";
 
 // AI Trainer personalities data - 3x3 Grid Layout
 const trainers = [
@@ -188,6 +189,21 @@ export default function Home() {
               Message and data rates may apply. Text STOP to opt out at any time.
             </p>
           </form>
+
+          {/* Demo Button */}
+          <div className="text-center mb-8">
+            <p className="text-gray-600 mb-4">or</p>
+            <Link href="/generate">
+              <Button
+                variant="outline"
+                size="lg"
+                className="bg-white/50 hover:bg-white/80 backdrop-blur-sm border-2 border-purple-200 hover:border-purple-400 text-purple-700 hover:text-purple-900 font-semibold px-8"
+              >
+                <Sparkles className="w-5 h-5 mr-2" />
+                Try AI Workout Generator
+              </Button>
+            </Link>
+          </div>
 
           <p className="text-sm text-gray-700 mb-4">
             <strong>$25/month billed monthly</strong> • Cancel anytime • No long-term commitment required

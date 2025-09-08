@@ -1,0 +1,305 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Enums
+enum FitnessLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum FitnessGoal {
+  STRENGTH
+  CARDIO
+  FLEXIBILITY
+  WEIGHT_LOSS
+  MUSCLE_GAIN
+  GENERAL_FITNESS
+}
+
+enum WorkoutType {
+  STRENGTH
+  BODYWEIGHT
+  FLEXIBILITY
+  MOBILITY
+  CARDIO
+  HIIT
+}
+
+enum CoachPersonality {
+  MAX
+  SAGE
+  KAI
+  ZARA
+  ACE
+  NOVA
+  BLAZE
+  RILEY
+  MARCO
+}
+
+enum WorkoutStatus {
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  SKIPPED
+}
+
+// User Profile Model
+model UserProfile {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // User Information
+  name           String?
+  email          String?   @unique
+  phoneNumber    String?   @unique
+
+  // Fitness Profile
+  fitnessLevel   FitnessLevel @default(BEGINNER)
+  primaryGoals   FitnessGoal[]
+  secondaryGoals FitnessGoal[]
+  
+  // Equipment Availability
+  availableEquipment String[] // JSON array of equipment names
+  
+  // Time Constraints
+  preferredWorkoutDuration Int @default(30) // minutes
+  workoutFrequency        Int @default(3)   // workouts per week
+  availableTimeSlots      String[] // JSON array of time slots
+  
+  // Coach Preferences
+  preferredCoach     CoachPersonality @default(MAX)
+  alternativeCoaches CoachPersonality[]
+  
+  // Personal Preferences
+  injuriesLimitations String? // Free text for injuries/limitations
+  motivationalStyle   String? // What motivates them
+  preferredWorkoutTypes WorkoutType[]
+  
+  // Progress Tracking
+  currentWeight  Float?
+  targetWeight   Float?
+  heightCm      Float?
+  
+  // Relationships
+  workouts      Workout[]
+  workoutPlans  WorkoutPlan[]
+  feedback      WorkoutFeedback[]
+  preferences   UserPreferences?
+
+  @@map("user_profiles")
+}
+
+// User Preferences (separate table for more complex preferences)
+model UserPreferences {
+  id           String @id @default(cuid())
+  userProfile  UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  userProfileId String @unique
+  
+  // AI Generation Preferences
+  workoutIntensityPreference String @default("moderate") // low, moderate, high
+  exerciseVarietyPreference  String @default("balanced")  // repetitive, balanced, high_variety
+  restTimePreferences        String @default("standard")  // short, standard, extended
+  
+  // Notification Preferences
+  enableDailyReminders       Boolean @default(true)
+  enableProgressNotifications Boolean @default(true)
+  reminderTime              String? // HH:MM format
+  
+  // Custom Instructions
+  customInstructions        String?
+  avoidExercises           String[] // JSON array of exercises to avoid
+  favoriteExercises        String[] // JSON array of preferred exercises
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("user_preferences")
+}
+
+// Workout Plan Model (Template/Generated Plan)
+model WorkoutPlan {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Plan Metadata
+  name           String
+  description    String?
+  estimatedDuration Int // minutes
+  targetMuscleGroups String[] // JSON array
+  workoutType    WorkoutType
+  difficultyLevel FitnessLevel
+  
+  // AI Generation Info
+  generatedByAI     Boolean @default(false)
+  aiModel          String? // e.g., "claude-3-sonnet", "gpt-4"
+  generationPrompt String? // Store the prompt used
+  coachPersonality CoachPersonality?
+  
+  // Template Data (JSON)
+  exercisesData String // JSON string matching Exercise[] interface
+  
+  // Relationships
+  userProfile   UserProfile @relation(fields: [userProfileId], references: [id])
+  userProfileId String
+  workouts      Workout[]
+
+  @@map("workout_plans")
+}
+
+// Individual Workout Session
+model Workout {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Workout Metadata
+  scheduledDate DateTime
+  startedAt     DateTime?
+  completedAt   DateTime?
+  status        WorkoutStatus @default(SCHEDULED)
+  
+  // Plan Reference
+  workoutPlan   WorkoutPlan @relation(fields: [workoutPlanId], references: [id])
+  workoutPlanId String
+  
+  // User Reference
+  userProfile   UserProfile @relation(fields: [userProfileId], references: [id])
+  userProfileId String
+  
+  // Workout Execution Data
+  actualDuration    Int? // minutes
+  exercisesCompleted Int @default(0)
+  totalExercises    Int @default(0)
+  
+  // Progress Data (JSON)
+  exerciseProgress String? // JSON string matching ExerciseProgress interface
+  
+  // Relationships
+  feedback WorkoutFeedback?
+  sets     WorkoutSet[]
+
+  @@map("workouts")
+}
+
+// Individual Set Data
+model WorkoutSet {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  // Set Metadata
+  exerciseId   Int // References exercise ID from JSON
+  exerciseName String
+  setNumber    Int
+  
+  // Performance Data
+  reps         Int
+  weight       Float?
+  weightUnit   String? // 'lbs' or 'kg'
+  difficulty   Int      // 1-5 scale
+  restTime     Int?     // actual rest time taken
+  
+  // Set Status
+  isExtra      Boolean @default(false) // Extra sets beyond planned
+  isSubstituted Boolean @default(false)
+  substitutedWith String? // Original exercise name if substituted
+  
+  // Relationships
+  workout   Workout @relation(fields: [workoutId], references: [id], onDelete: Cascade)
+  workoutId String
+
+  @@map("workout_sets")
+}
+
+// Workout Feedback
+model WorkoutFeedback {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  // Feedback Data
+  overallRating Int // 1-5 scale
+  energyLevel   Int // 1-5 scale
+  comments      String?
+  
+  // Detailed Feedback
+  difficultyFeedback String? // "too_easy", "just_right", "too_hard"
+  lengthFeedback     String? // "too_short", "just_right", "too_long"
+  enjoymentRating    Int?    // 1-5 scale
+  
+  // Exercise-Specific Feedback (JSON)
+  exerciseFeedback String? // JSON object with exercise-specific ratings
+  
+  // Relationships
+  workout       Workout     @relation(fields: [workoutId], references: [id], onDelete: Cascade)
+  workoutId     String      @unique
+  userProfile   UserProfile @relation(fields: [userProfileId], references: [id])
+  userProfileId String
+
+  @@map("workout_feedback")
+}
+
+// Coach Messages/Motivational Content
+model CoachMessage {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  // Message Metadata
+  coach         CoachPersonality
+  messageType   String // "motivation", "instruction", "feedback", "celebration"
+  context       String // "pre_workout", "during_set", "rest", "post_workout"
+  
+  // Message Content
+  title         String?
+  message       String
+  tags          String[] // JSON array for categorization
+  
+  // Usage Tracking
+  usageCount    Int @default(0)
+  lastUsed      DateTime?
+
+  @@map("coach_messages")
+}
+
+// AI Generation Logs (for monitoring and improvement)
+model AIGenerationLog {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  // Request Details
+  requestType       String // "workout_generation", "adaptation", "motivation"
+  userId           String?
+  coachPersonality CoachPersonality?
+  
+  // AI Provider Info
+  aiProvider       String // "anthropic", "openai"
+  model           String // "claude-3-sonnet", "gpt-4"
+  
+  // Request/Response Data
+  requestPrompt    String
+  responseContent  String?
+  
+  // Performance Metrics
+  tokenUsage       Int?
+  responseTimeMs   Int?
+  success          Boolean @default(false)
+  errorMessage     String?
+  
+  // Validation Results
+  schemaValidation Boolean @default(false)
+  exerciseCount    Int?
+  fallbackUsed     Boolean @default(false)
+
+  @@map("ai_generation_logs")
+}

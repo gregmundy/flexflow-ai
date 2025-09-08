@@ -305,13 +305,41 @@ const workoutTemplates = {
   }
 };
 
-// Select workout type - you can change this to test different workout types
-// Options: 'strength', 'bodyweight', 'flexibility', 'mobility'
-const currentWorkoutType: keyof typeof workoutTemplates = 'bodyweight'; // 👈 Change this to test different workout types!
-const sampleWorkout = {
-  ...workoutTemplates[currentWorkoutType],
-  date: new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
+// Check for generated workout in sessionStorage or fall back to template
+const getWorkoutData = () => {
+  if (typeof window !== 'undefined') {
+    const generatedWorkout = sessionStorage.getItem('generatedWorkout');
+    if (generatedWorkout) {
+      try {
+        const parsed = JSON.parse(generatedWorkout);
+        // Return the AI-generated workout data
+        return {
+          trainer: parsed.trainer,
+          trainerAvatar: parsed.trainerAvatar,
+          trainerColor: parsed.trainerColor,
+          date: parsed.date,
+          focus: parsed.focus,
+          estimatedTime: parsed.estimatedTime,
+          exercises: parsed.exercises || workoutTemplates.bodyweight.exercises, // Fallback to template exercises
+          isGenerated: true,
+          generatedData: parsed,
+        };
+      } catch (e) {
+        console.error('Failed to parse generated workout:', e);
+      }
+    }
+  }
+  
+  // Fallback to template workout
+  const currentWorkoutType: keyof typeof workoutTemplates = 'bodyweight';
+  return {
+    ...workoutTemplates[currentWorkoutType],
+    date: new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
+    isGenerated: false,
+  };
 };
+
+const sampleWorkout = getWorkoutData();
 
 // Enhanced Timer component with skip and duration controls
 const RestTimer = ({ 
@@ -996,7 +1024,7 @@ export default function WorkoutPage() {
               className="p-4 space-y-6"
             >
               {/* Trainer Greeting */}
-              <Card className="bg-gradient-to-r from-red-500 to-red-600 text-white">
+              <Card className={`bg-gradient-to-r ${sampleWorkout.trainerColor} text-white`}>
                 <CardHeader className="pb-4">
                   <div className="flex items-center gap-4 mb-2">
                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-2xl">
@@ -1007,12 +1035,18 @@ export default function WorkoutPage() {
                         {sampleWorkout.trainer}
                       </Badge>
                       <CardTitle className="text-xl font-bold">
-                        Time to LIFT HEAVY, champion!
+                        {sampleWorkout.isGenerated && sampleWorkout.generatedData 
+                          ? sampleWorkout.generatedData.greeting || "Time to LIFT HEAVY, champion!"
+                          : "Time to LIFT HEAVY, champion!"
+                        }
                       </CardTitle>
                     </div>
                   </div>
-                  <CardDescription className="text-red-100">
-                    Today we're hitting the weights HARD! Build that strength like the beast you are! Let's break some personal records! 💪
+                  <CardDescription className={`${sampleWorkout.trainerColor.includes('red') ? 'text-red-100' : sampleWorkout.trainerColor.includes('purple') ? 'text-purple-100' : sampleWorkout.trainerColor.includes('green') ? 'text-green-100' : sampleWorkout.trainerColor.includes('blue') ? 'text-blue-100' : 'text-white/80'}`}>
+                    {sampleWorkout.isGenerated && sampleWorkout.generatedData
+                      ? `Ready for a ${sampleWorkout.generatedData.estimatedTime || '30-minute'} ${sampleWorkout.generatedData.focus || 'strength'} session!`
+                      : "Today we're hitting the weights HARD! Build that strength like the beast you are! Let's break some personal records! 💪"
+                    }
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -1382,9 +1416,17 @@ export default function WorkoutPage() {
                   >
                     <Trophy className="w-16 h-16 mx-auto mb-4" />
                   </motion.div>
-                  <h2 className="text-2xl font-bold mb-2">WEIGHTS DEMOLISHED!</h2>
+                  <h2 className="text-2xl font-bold mb-2">
+                    {sampleWorkout.isGenerated && sampleWorkout.generatedData
+                      ? "WORKOUT CRUSHED!"
+                      : "WEIGHTS DEMOLISHED!"
+                    }
+                  </h2>
                   <p className="text-green-100">
-                    You just CRUSHED that strength session like a true warrior! Those weights didn't stand a chance against your beast mode power! MAX is PUMPED! 💪
+                    {sampleWorkout.isGenerated && sampleWorkout.generatedData
+                      ? `Amazing work! ${sampleWorkout.trainer} is so proud of your dedication! You absolutely nailed that ${sampleWorkout.generatedData.focus || 'workout'} session! ${sampleWorkout.trainerAvatar}`
+                      : "You just CRUSHED that strength session like a true warrior! Those weights didn't stand a chance against your beast mode power! MAX is PUMPED! 💪"
+                    }
                   </p>
                 </CardContent>
               </Card>
@@ -1460,7 +1502,7 @@ export default function WorkoutPage() {
                         name="comments"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Additional feedback for MAX (optional)</FormLabel>
+                            <FormLabel>Additional feedback for {sampleWorkout.trainer} (optional)</FormLabel>
                             <FormControl>
                               <textarea
                                 {...field}

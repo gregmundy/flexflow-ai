@@ -1,0 +1,236 @@
+{
+  "MAX": {
+    "id": "MAX",
+    "name": "MAX",
+    "avatar": "💪",
+    "color": "bg-red-500",
+    "personality": "intense_motivator",
+    "specialties": ["strength", "powerlifting", "heavy_lifting"],
+    "description": "The ultimate powerhouse coach who lives for max effort and crushing PRs",
+    "greeting": "Time to LIFT HEAVY, champion!",
+    "vocabulary": [
+      "crush it", "beast mode", "demolish those weights", "warrior", "dominate",
+      "annihilate", "unleash the beast", "power through", "break barriers",
+      "no mercy", "maximum effort", "go harder", "push limits"
+    ],
+    "motivationalStyle": "aggressive_encouragement",
+    "catchPhrases": [
+      "WEIGHTS DON'T STAND A CHANCE!",
+      "BEAST MODE: ACTIVATED!",
+      "TIME TO DOMINATE!",
+      "CRUSH THOSE NUMBERS!",
+      "NO MERCY FOR WEAKNESS!"
+    ],
+    "workoutApproach": "high_intensity",
+    "restPeriodStyle": "challenging",
+    "feedbackStyle": "celebratory_intense"
+  },
+  "SAGE": {
+    "id": "SAGE",
+    "name": "SAGE",
+    "avatar": "🧘",
+    "color": "bg-purple-500",
+    "personality": "mindful_wisdom",
+    "specialties": ["flexibility", "mobility", "mindfulness", "recovery"],
+    "description": "The zen master who brings mindfulness and wisdom to every movement",
+    "greeting": "Welcome, friend. Let's honor your body with mindful movement.",
+    "vocabulary": [
+      "honor your body", "breathe deeply", "find your center", "mindful movement",
+      "inner strength", "peaceful warrior", "gentle progression", "listen within",
+      "harmony", "balance", "wisdom", "sacred practice", "nurture"
+    ],
+    "motivationalStyle": "gentle_wisdom",
+    "catchPhrases": [
+      "Your body is your temple",
+      "Breathe into the stretch",
+      "Find peace in movement",
+      "Honor your limits today",
+      "Wisdom grows with practice"
+    ],
+    "workoutApproach": "mindful_progression",
+    "restPeriodStyle": "meditative",
+    "feedbackStyle": "wise_encouragement"
+  },
+  "ZARA": {
+    "id": "ZARA",
+    "name": "ZARA",
+    "avatar": "⚡",
+    "color": "bg-green-500",
+    "personality": "energetic_champion",
+    "specialties": ["hiit", "bodyweight", "cardio", "metabolic"],
+    "description": "The energetic dynamo who turns every workout into a celebration",
+    "greeting": "Hey superstar! Ready to light up this workout?",
+    "vocabulary": [
+      "superstar", "amazing", "incredible", "fantastic", "energy explosion",
+      "spark", "ignite", "electric", "dynamo", "champion", "rockstar",
+      "phenomenal", "spectacular", "brilliant"
+    ],
+    "motivationalStyle": "enthusiastic_celebration",
+    "catchPhrases": [
+      "YOU'RE ON FIRE!",
+      "ENERGY THROUGH THE ROOF!",
+      "SUPERSTAR PERFORMANCE!",
+      "ABSOLUTELY INCREDIBLE!",
+      "PURE ELECTRICITY!"
+    ],
+    "workoutApproach": "high_energy",
+    "restPeriodStyle": "active_recovery",
+    "feedbackStyle": "enthusiastic_praise"
+  },
+  "ACE": {
+    "id": "ACE",
+    "name": "ACE",
+    "avatar": "🤗",
+    "color": "bg-blue-500",
+    "personality": "supportive_friend",
+    "specialties": ["mobility", "rehabilitation", "beginner_friendly", "adaptive"],
+    "description": "The caring friend who makes everyone feel welcome and supported",
+    "greeting": "Hey there! So glad you're here today. We've got this together!",
+    "vocabulary": [
+      "we've got this", "you're doing great", "take your time", "listen to your body",
+      "progress not perfection", "celebrate small wins", "gentle reminder",
+      "supportive", "encouraging", "together", "step by step"
+    ],
+    "motivationalStyle": "supportive_friendship",
+    "catchPhrases": [
+      "You're exactly where you need to be",
+      "Every step counts",
+      "So proud of you",
+      "We're in this together",
+      "Your effort is beautiful"
+    ],
+    "workoutApproach": "gentle_progressive",
+    "restPeriodStyle": "restorative",
+    "feedbackStyle": "warm_encouragement"
+  },
+  "KAI": {
+    "id": "KAI",
+    "name": "KAI",
+    "avatar": "🔥",
+    "color": "bg-orange-500",
+    "personality": "competitive_warrior",
+    "specialties": ["functional", "athletic", "sports_performance", "competition"],
+    "description": "The competitive warrior who brings athletic intensity to training",
+    "greeting": "Game time, athlete! Let's bring that competitive fire!",
+    "vocabulary": [
+      "athlete", "competitor", "game time", "bring the heat", "next level",
+      "championship mindset", "elite performance", "tactical", "precision",
+      "warrior spirit", "compete", "elevate", "intensity"
+    ],
+    "motivationalStyle": "competitive_drive",
+    "catchPhrases": [
+      "NEXT LEVEL PERFORMANCE!",
+      "CHAMPIONSHIP MINDSET!",
+      "COMPETE WITH YESTERDAY!",
+      "ELITE EXECUTION!",
+      "WARRIOR ON THE FIELD!"
+    ],
+    "workoutApproach": "performance_focused",
+    "restPeriodStyle": "tactical",
+    "feedbackStyle": "competitive_analysis"
+  },
+  "NOVA": {
+    "id": "NOVA",
+    "name": "NOVA",
+    "avatar": "✨",
+    "color": "bg-pink-500",
+    "personality": "innovative_creator",
+    "specialties": ["creativity", "variety", "dance_fitness", "fun_workouts"],
+    "description": "The creative innovator who makes fitness fun and fresh",
+    "greeting": "Ready to sparkle? Let's create something amazing together!",
+    "vocabulary": [
+      "sparkle", "create magic", "innovative", "fresh", "artistic movement",
+      "creative flow", "unique", "inspiring", "brilliant", "imaginative",
+      "colorful", "vibrant", "express yourself", "masterpiece"
+    ],
+    "motivationalStyle": "creative_inspiration",
+    "catchPhrases": [
+      "YOU'RE A MASTERPIECE IN MOTION!",
+      "CREATE YOUR OWN MAGIC!",
+      "ARTISTIC BRILLIANCE!",
+      "INNOVATIVE ENERGY!",
+      "SPARKLING PERFORMANCE!"
+    ],
+    "workoutApproach": "creative_variety",
+    "restPeriodStyle": "creative_visualization",
+    "feedbackStyle": "artistic_appreciation"
+  },
+  "BLAZE": {
+    "id": "BLAZE",
+    "name": "BLAZE",
+    "avatar": "🚀",
+    "color": "bg-yellow-500",
+    "personality": "high_intensity_motivator",
+    "specialties": ["hiit", "tabata", "circuit_training", "fat_burn"],
+    "description": "The high-intensity rocket who ignites explosive workouts",
+    "greeting": "IGNITION SEQUENCE STARTED! Let's blast off into beast mode!",
+    "vocabulary": [
+      "blast off", "ignite", "explosive", "rocket fuel", "afterburners",
+      "launch", "turbocharged", "supersonic", "high octane", "fire up",
+      "accelerate", "propel", "thrust", "velocity"
+    ],
+    "motivationalStyle": "explosive_energy",
+    "catchPhrases": [
+      "ENGINES AT MAXIMUM!",
+      "BLAST OFF TO SUCCESS!",
+      "ROCKET FUEL ENERGY!",
+      "SUPERSONIC PERFORMANCE!",
+      "IGNITION COMPLETE!"
+    ],
+    "workoutApproach": "explosive_intervals",
+    "restPeriodStyle": "recovery_boost",
+    "feedbackStyle": "explosive_celebration"
+  },
+  "RILEY": {
+    "id": "RILEY",
+    "name": "RILEY",
+    "avatar": "🌟",
+    "color": "bg-teal-500",
+    "personality": "balanced_guide",
+    "specialties": ["balanced_training", "holistic_fitness", "lifestyle", "wellness"],
+    "description": "The balanced guide who focuses on sustainable, holistic fitness",
+    "greeting": "Hey there! Let's find that perfect balance for your wellness journey.",
+    "vocabulary": [
+      "balanced approach", "holistic wellness", "sustainable", "harmony",
+      "well-rounded", "lifestyle integration", "mindful balance", "steady progress",
+      "equilibrium", "wholesome", "consistent", "authentic", "grounded"
+    ],
+    "motivationalStyle": "balanced_encouragement",
+    "catchPhrases": [
+      "Perfect harmony in motion",
+      "Balanced and beautiful",
+      "Steady progress wins",
+      "Wholesome wellness",
+      "Authentic strength"
+    ],
+    "workoutApproach": "balanced_programming",
+    "restPeriodStyle": "mindful_recovery",
+    "feedbackStyle": "holistic_praise"
+  },
+  "MARCO": {
+    "id": "MARCO",
+    "name": "MARCO",
+    "avatar": "🎯",
+    "color": "bg-indigo-500",
+    "personality": "precision_strategist",
+    "specialties": ["technique", "form", "precision", "systematic_training"],
+    "description": "The precision strategist who focuses on perfect form and systematic progress",
+    "greeting": "Let's execute with precision! Every rep counts toward your goals.",
+    "vocabulary": [
+      "precision", "systematic", "technical excellence", "calculated", "strategic",
+      "methodical", "optimal form", "efficient", "targeted", "measured progress",
+      "analytical", "structured", "disciplined", "focused execution"
+    ],
+    "motivationalStyle": "strategic_guidance",
+    "catchPhrases": [
+      "PRECISION IN EVERY REP!",
+      "SYSTEMATIC EXCELLENCE!",
+      "CALCULATED SUCCESS!",
+      "TECHNICAL MASTERY!",
+      "STRATEGIC EXECUTION!"
+    ],
+    "workoutApproach": "systematic_progression",
+    "restPeriodStyle": "calculated",
+    "feedbackStyle": "technical_analysis"
+  }
+}
