@@ -232,6 +232,54 @@ export const coachMessages = pgTable('coach_messages', {
   lastUsed: timestamp('last_used', { withTimezone: true }),
 });
 
+// Onboarding Data table
+export const onboardingData = pgTable('onboarding_data', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+
+  // User identification (can be anonymous initially)
+  userId: uuid('user_id'), // Optional - for authenticated users
+  email: text('email'),
+  phoneNumber: text('phone_number'),
+  sessionId: text('session_id'), // For tracking anonymous users
+
+  // Step 2: Fitness Focus Areas
+  fitnessAreas: jsonb('fitness_areas').$type<string[]>().notNull(),
+  
+  // Step 3: Activity Level
+  exerciseFrequency: text('exercise_frequency').notNull(),
+  exerciseIntensity: text('exercise_intensity').notNull(),
+  
+  // Step 4: Experience Level
+  experienceLevel: text('experience_level').notNull(), // 'beginner', 'intermediate', 'advanced'
+  
+  // Step 5: Workout Preferences
+  workoutDuration: integer('workout_duration').notNull(), // minutes
+  availableEquipment: jsonb('available_equipment').$type<string[]>().notNull().default([]),
+  workoutTypes: jsonb('workout_types').$type<string[]>().notNull(),
+  
+  // Step 6: Schedule Preferences
+  preferredDays: jsonb('preferred_days').$type<string[]>().notNull(),
+  preferredTime: text('preferred_time').notNull(),
+  smsReminderTiming: text('sms_reminder_timing').notNull(),
+  smsConsent: boolean('sms_consent').notNull().default(false),
+  
+  // Step 7: Movement Preferences
+  movementsToAvoid: jsonb('movements_to_avoid').$type<string[]>().notNull().default([]),
+  
+  // Step 8: Trainer Selection
+  selectedTrainer: text('selected_trainer').notNull(),
+  
+  // Compliance
+  healthDisclaimer: boolean('health_disclaimer').notNull().default(false),
+  privacyConsent: boolean('privacy_consent').notNull().default(false),
+
+  // Processing Status
+  isProcessed: boolean('is_processed').notNull().default(false), // Whether user profile was created
+  userProfileId: uuid('user_profile_id').references(() => userProfiles.id),
+});
+
 // AI Generation Logs table (for monitoring and improvement)
 export const aiGenerationLogs = pgTable('ai_generation_logs', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -298,6 +346,8 @@ export type UserProfile = typeof userProfiles.$inferSelect;
 export type NewUserProfile = typeof userProfiles.$inferInsert;
 export type UserPreferences = typeof userPreferences.$inferSelect;
 export type NewUserPreferences = typeof userPreferences.$inferInsert;
+export type OnboardingData = typeof onboardingData.$inferSelect;
+export type NewOnboardingData = typeof onboardingData.$inferInsert;
 export type WorkoutPlan = typeof workoutPlans.$inferSelect;
 export type NewWorkoutPlan = typeof workoutPlans.$inferInsert;
 export type Workout = typeof workouts.$inferSelect;

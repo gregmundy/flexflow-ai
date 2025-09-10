@@ -29,9 +29,6 @@ services:
       # Persistent data storage
       - postgres_data:/var/lib/postgresql/data
       
-      # Custom PostgreSQL configuration for development
-      - ./docker/postgres/postgresql.conf:/etc/postgresql/postgresql.conf:ro
-      
       # Initialization scripts (runs on first startup)
       - ./docker/postgres/init-db.sql:/docker-entrypoint-initdb.d/01-init-db.sql:ro
       
@@ -54,12 +51,11 @@ services:
         reservations:
           memory: 256M
     
-    # Custom command to use our PostgreSQL configuration
+    # Custom command with inline configuration (avoiding external config file issues)
     command: >
       postgres
-      -c config_file=/etc/postgresql/postgresql.conf
-      -c log_destination=stderr
-      -c logging_collector=off
+      -c max_connections=100
+      -c shared_buffers=128MB
       -c log_statement=all
       -c log_connections=on
       -c log_disconnections=on
